@@ -4,6 +4,20 @@ import pandas as pd
 import pickle
 import sklearn
 import requests
+# for env file
+from dotenv import load_dotenv
+import os
+from pathlib import Path
+
+# Load the .env file explicitly
+env_path = Path("config") / ".env"
+load_dotenv(dotenv_path=env_path)
+
+# Retrieve the key
+api_key = os.getenv("MY_SECRET_KEY")
+
+
+
 
 print(sklearn.__version__)
 
@@ -14,7 +28,7 @@ preprocessor = pickle.load(open('models/preprocessor.pkl','rb'))
 # flask app
 app = Flask(__name__)
 
-API_KEY = "023297fd0c06ff8ed14cc93597fe4c33"
+API_KEY = api_key
 
 @app.route('/')
 def index():
